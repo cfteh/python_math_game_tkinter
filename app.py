@@ -30,6 +30,7 @@ def checkAnswer():
             print("Incorrect")
         consecutiveCorrectLabel.config(text=f"Consecutive Correct = {consecutiveCorrect}")
         generateQuestion()
+        entry.delete(0, 'end')
     else:
         reportLabel.config(text="No Answer")
 
