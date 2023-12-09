@@ -9,6 +9,10 @@ inputAnswer = 0
 consecutiveCorrect = 0
 
 
+def newQuestion():
+    generateQuestion()
+    entry.delete(0, 'end')
+
 def checkAnswer():
     global number1
     global number2
@@ -29,8 +33,7 @@ def checkAnswer():
             consecutiveCorrect = 0
             print("Incorrect")
         consecutiveCorrectLabel.config(text=f"Consecutive Correct = {consecutiveCorrect}")
-        generateQuestion()
-        entry.delete(0, 'end')
+        newQuestion()
     else:
         reportLabel.config(text="No Answer")
 
@@ -41,7 +44,7 @@ def generateQuestion():
     number1 = random.randrange(1000)
     number2 = random.randrange(1000)
 
-    label.config(text = f"Question: {number1} + {number2} = ?")
+    label.config(text = f"Question:  {number1} + {number2} = ?")
 
 def generateSecondNumber():
     number2 = random.range(1000)
@@ -50,9 +53,6 @@ def generateSecondNumber():
 root = tk.Tk()
 root.title("Maths App")
 root.geometry("1048x480")
-
-button = ttk.Button(root, text="Generate Question",  command=generateQuestion, padding=10)
-button.pack()
 
 label = ttk.Label(root, text="", padding=10)
 label.pack()
@@ -71,5 +71,7 @@ reportLabel.pack()
 
 consecutiveCorrectLabel = ttk.Label(root, text=f"Consecutive Correct = {consecutiveCorrect}", padding=10)
 consecutiveCorrectLabel.pack()
+
+newQuestion()
 
 root.mainloop()
