@@ -8,6 +8,13 @@ correctAnswer = 0
 inputAnswer = 0
 consecutiveCorrect = 0
 
+def isValidAnswer(testString):
+    try:
+        int(testString)
+        return True
+    except:
+        reportLabel.config(text="Wrong Answer Format")
+    
 
 def newQuestion():
     generateQuestion()
@@ -19,7 +26,7 @@ def checkAnswer():
     global consecutiveCorrect
 
     string = entry.get()
-    if string != '':
+    if ((string != '') and (isValidAnswer(string))):
         inputAnswer = int(entry.get())
         print(f"Input Answer: {inputAnswer}, type: {type(inputAnswer)}")
         correctAnswer = number1 + number2
