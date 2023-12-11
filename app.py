@@ -50,20 +50,27 @@ def generateQuestion():
     global correctAnswer
     global operator
 
-    questionType = random.randrange(2)
+    questionType = random.randrange(3)
     print(questionType)
-    if questionType == 1:
+    if questionType == 0:
         question = questionGenerator.getAddition()
         number1 = question[0]
         number2 = question[1]
         correctAnswer = question[2]
         operator = question[3]
-    else:
+    elif questionType == 1:
         question = questionGenerator.getSubtract()
         number1 = question[0]
         number2 = question[1]
         correctAnswer = question[2]
         operator = question[3]
+    else:
+        question = questionGenerator.getMultiplication()
+        number1 = question[0]
+        number2 = question[1]
+        correctAnswer = question[2]
+        operator = question[3]
+        
 
     label.config(text = f"Question:  {number1} {operator} {number2} = ?")
 
