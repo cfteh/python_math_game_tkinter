@@ -1,5 +1,6 @@
 import random
 import tkinter as tk
+import questionGenerator
 from tkinter import ttk
 
 number1 = 0
@@ -7,6 +8,7 @@ number2 = 0
 correctAnswer = 0
 inputAnswer = 0
 consecutiveCorrect = 0
+operator = ""
 
 def isValidAnswer(testString):
     try:
@@ -21,15 +23,12 @@ def newQuestion():
     entry.delete(0, 'end')
 
 def checkAnswer():
-    global number1
-    global number2
     global consecutiveCorrect
 
     string = entry.get()
     if ((string != '') and (isValidAnswer(string))):
         inputAnswer = int(entry.get())
         print(f"Input Answer: {inputAnswer}, type: {type(inputAnswer)}")
-        correctAnswer = number1 + number2
         print(f"Correct Answer: {correctAnswer}, type: {type(correctAnswer)}")
         if correctAnswer == inputAnswer:
             reportLabel.config(text="Correct!")
@@ -48,14 +47,26 @@ def checkAnswer():
 def generateQuestion():
     global number1
     global number2
-    number1 = random.randrange(1000)
-    number2 = random.randrange(1000)
+    global correctAnswer
+    global operator
 
-    label.config(text = f"Question:  {number1} + {number2} = ?")
+    questionType = random.randrange(2)
+    print(questionType)
+    if questionType == 1:
+        question = questionGenerator.getAddition()
+        number1 = question[0]
+        number2 = question[1]
+        correctAnswer = question[2]
+        operator = question[3]
+    else:
+        question = questionGenerator.getSubtract()
+        number1 = question[0]
+        number2 = question[1]
+        correctAnswer = question[2]
+        operator = question[3]
 
-def generateSecondNumber():
-    number2 = random.range(1000)
-    print("World")
+    label.config(text = f"Question:  {number1} {operator} {number2} = ?")
+
 
 root = tk.Tk()
 root.title("Maths App")
