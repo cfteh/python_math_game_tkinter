@@ -36,10 +36,10 @@ def checkAnswer():
             consecutiveCorrect = consecutiveCorrect + 1
             print("Correct")
         else:
-            reportLabel.config(text="Incorrect!")
+            reportLabel.config(text=f"Incorrect. Correct Answer: {correctAnswer}")
             consecutiveCorrect = 0
-            print("Incorrect")
-        consecutiveCorrectLabel.config(text=f"Consecutive Correct = {consecutiveCorrect}")
+            print(f"Incorrect. Correct Answer: {correctAnswer}")
+        consecutiveCorrectLabel.config(text=f"Score = {consecutiveCorrect}")
         newQuestion()
     else:
         reportLabel.config(text="No Answer")
